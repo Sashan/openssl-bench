@@ -83,6 +83,8 @@ typedef struct WOLFSSL ssl_st;
 typedef struct WOLFSSL_BIO bio_st;
 #endif
 
+static const char *exec_name = "";
+
 class Context {
   ssl_ctx_st *m_ctx;
 
@@ -522,7 +524,7 @@ static void print_results(const char *server, const char *client,
                           const double thread_work, const char *units) {
   const size_t n_threads = thread_timings.size();
   if (n_threads > 1) {
-    printf("%s\tthreads\t%zu\t", server, n_threads);
+    printf("%s %s\tthreads\t%zu\t", exec_name, server, n_threads);
     double total_server = 0.;
 
     for (unsigned i = 0; i < n_threads; i++) {
@@ -532,7 +534,7 @@ static void print_results(const char *server, const char *client,
     }
     printf("total\t%g\tper-thread\t%g\t%s\n", total_server,
            total_server / n_threads, units);
-    printf("%s\tthreads\t%zu\t", client, n_threads);
+    printf("%s %s\tthreads\t%zu\t", exec_name, client, n_threads);
     double total_client = 0.;
 
     for (unsigned i = 0; i < n_threads; i++) {
@@ -543,9 +545,9 @@ static void print_results(const char *server, const char *client,
     printf("total\t%g\tper-thread\t%g\t%s\n", total_client,
            total_client / n_threads, units);
   } else {
-    printf("%s\t%g\t%s\n", server,
+    printf("%s %s\t%g\t%s\n", exec_name, server,
            thread_work / thread_timings[0].server.load(), units);
-    printf("%s\t%g\t%s\n", client,
+    printf("%s %s\t%g\t%s\n", exec_name, client,
            thread_work / thread_timings[0].client.load(), units);
   }
 }
@@ -834,6 +836,8 @@ static int usage() {
 int main(int argc, char **argv) {
   Context server_ctx = Context::server();
   Context client_ctx = Context::client();
+
+  exec_name = argv[0];
 
   argv += 1;
   argc -= 1;

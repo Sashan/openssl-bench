@@ -354,7 +354,9 @@ measure-aws-lc: bench-aws-lc
 	LD_LIBRARY_PATH=${AWS_INSTALL_PREFIX}/lib $(ENV) \
 			./$< handshake TLS_AES_256_GCM_SHA384
 	#LD_LIBRARY_PATH=${AWS_INSTALL_PREFIX}/lib $(ENV) \
-			./bench handshake-resume TLS_AES_256_GCM_SHA384
+	#		./$< handshake-resume TLS_AES_256_GCM_SHA384
+	echo "./$< handshakes       server  TLSv1.3 TLS_AES_256_GCM_SHA384  not-supported"
+	echo "./$< handshakes       client  TLSv1.3 TLS_AES_256_GCM_SHA384  not-supported"
 	LD_LIBRARY_PATH=${AWS_INSTALL_PREFIX}/lib $(ENV) \
 			./$< handshake-ticket TLS_AES_256_GCM_SHA384
 	LD_LIBRARY_PATH=${AWS_INSTALL_PREFIX}/lib $(ENV) \
@@ -399,16 +401,24 @@ measure-libressl: bench-libressl
 			./$< bulk TLS_AES_256_GCM_SHA384 1048576
 	LD_LIBRARY_PATH=${LIBRESSL_INSTALL_PREFIX}/lib ${ENV} \
 			./$< handshake ECDHE-RSA-AES256-GCM-SHA384
-	LD_LIBRARY_PATH=${LIBRESSL_INSTALL_PREFIX}/lib ${ENV} \
-			./$< handshake-resume ECDHE-RSA-AES256-GCM-SHA384
-	LD_LIBRARY_PATH=${LIBRESSL_INSTALL_PREFIX}/lib ${ENV} \
-			./$< handshake-ticket ECDHE-RSA-AES256-GCM-SHA384
+	#LD_LIBRARY_PATH=${LIBRESSL_INSTALL_PREFIX}/lib ${ENV} \
+	#		./$< handshake-resume ECDHE-RSA-AES256-GCM-SHA384
+	echo "./$< handshakes-resume       server  TLSv1.3  ECDHE-RSA-AES256-GCM-SHA384 not-supported"
+	echo "./$< handshakes-resume       client  TLSv1.3  ECDHE-RSA-AES256-GCM-SHA384 not-supported"
+	#LD_LIBRARY_PATH=${LIBRESSL_INSTALL_PREFIX}/lib ${ENV} \
+	#		./$< handshake-ticket ECDHE-RSA-AES256-GCM-SHA384
+	echo "./$< handshakes-ticket       server  TLSv1.3  ECDHE-RSA-AES256-GCM-SHA384 not-supported"
+	echo "./$< handshakes-ticket       client  TLSv1.3  ECDHE-RSA-AES256-GCM-SHA384 not-supported"
 	LD_LIBRARY_PATH=${LIBRESSL_INSTALL_PREFIX}/lib ${ENV} \
 			./$< handshake TLS_AES_256_GCM_SHA384
-	LD_LIBRARY_PATH=${LIBRESSL_INSTALL_PREFIX}/lib ${ENV} \
-			./$< handshake-resume TLS_AES_256_GCM_SHA384
-	LD_LIBRARY_PATH=${LIBRESSL_INSTALL_PREFIX}/lib ${ENV} \
-			./$< handshake-ticket TLS_AES_256_GCM_SHA384
+	#LD_LIBRARY_PATH=${LIBRESSL_INSTALL_PREFIX}/lib ${ENV} \
+	#		./$< handshake-resume TLS_AES_256_GCM_SHA384
+	echo "./$< handshakes-resume       server  TLSv1.3 TLS_AES_256_GCM_SHA384 not-supported"
+	echo "./$< handshakes-resume       client  TLSv1.3 TLS_AES_256_GCM_SHA384 not-supported"
+	#LD_LIBRARY_PATH=${LIBRESSL_INSTALL_PREFIX}/lib ${ENV} \
+	#		./$< handshake-ticket TLS_AES_256_GCM_SHA384
+	echo "./$< handshakes-ticket       server  TLSv1.3 TLS_AES_256_GCM_SHA384 not-supported"
+	echo "./$< handshakes-ticket       client  TLSv1.3 TLS_AES_256_GCM_SHA384 not-supported"
 	LD_LIBRARY_PATH=${LIBRESSL_INSTALL_PREFIX}/lib ${ENV} \
 			./$< --ecdsa handshake ECDHE-ECDSA-AES256-GCM-SHA384
 	LD_LIBRARY_PATH=${LIBRESSL_INSTALL_PREFIX}/lib ${ENV} \
@@ -447,8 +457,10 @@ measure-wolfssl: bench-wolfssl
 			./$< bulk ECDHE-RSA-AES256-GCM-SHA384 1048576
 	LD_LIBRARY_PATH=${WOLFSSL_INSTALL_PREFIX}/lib ${ENV} \
 			./$< bulk ECDHE-RSA-CHACHA20-POLY1305 1048576
-	LD_LIBRARY_PATH=${WOLFSSL_INSTALL_PREFIX}/lib ${ENV} \
-			./$< bulk TLS_AES_256_GCM_SHA384 1048576
+	#LD_LIBRARY_PATH=${WOLFSSL_INSTALL_PREFIX}/lib ${ENV} \
+	#		./$< bulk TLS_AES_256_GCM_SHA384 1048576
+	echo "./$< bulk send TLSv1.3 TLS_AES_256_GCM_SHA384 not-supported"
+	echo "./$< bulk recv TLSv1.3 TLS_AES_256_GCM_SHA384 not-supported"
 	LD_LIBRARY_PATH=${WOLFSSL_INSTALL_PREFIX}/lib ${ENV} \
 			./$< handshake ECDHE-RSA-AES256-GCM-SHA384
 	LD_LIBRARY_PATH=${WOLFSSL_INSTALL_PREFIX}/lib ${ENV} \
@@ -457,14 +469,24 @@ measure-wolfssl: bench-wolfssl
 			./$< handshake-ticket ECDHE-RSA-AES256-GCM-SHA384
 	#LD_LIBRARY_PATH=${WOLFSSL_INSTALL_PREFIX}/lib ${ENV} \
 	#		./$< handshake TLS_AES_256_GCM_SHA384
+	echo "./$< handshakes       server  TLSv1.3 TLS_AES_256_GCM_SHA384 not-supported"
+	echo "./$< handshakes       client  TLSv1.3 TLS_AES_256_GCM_SHA384 not-supported"
 	#LD_LIBRARY_PATH=${WOLFSSL_INSTALL_PREFIX}/lib ${ENV} \
 	#		./$< handshake-resume TLS_AES_256_GCM_SHA384
+	echo "./$< handshake-resume       server  TLSv1.3 TLS_AES_256_GCM_SHA384 not-supported"
+	echo "./$< handshake-resume       client  TLSv1.3 TLS_AES_256_GCM_SHA384 not-supported"
 	#LD_LIBRARY_PATH=${WOLFSSL_INSTALL_PREFIX}/lib ${ENV} \
 	#		./$< handshake-ticket TLS_AES_256_GCM_SHA384
+	echo "./$< handshake-ticket       server  TLSv1.3 TLS_AES_256_GCM_SHA384 not-supported"
+	echo "./$< handshake-ticket       client  TLSv1.3 TLS_AES_256_GCM_SHA384 not-supported"
 	#LD_LIBRARY_PATH=${WOLFSSL_INSTALL_PREFIX}/lib ${ENV} \
 	#		./$< --ecdsa handshake ECDHE-ECDSA-AES256-GCM-SHA384
+	echo "./$< handshakes       server  TLSv1.3 ECDHE-ECDSA-AES256-GCM-SHA384 not-supported"
+	echo "./$< handshakes       client  TLSv1.3 ECDHE-ECDSA-AES256-GCM-SHA384 not-supported"
 	#LD_LIBRARY_PATH=${WOLFSSL_INSTALL_PREFIX}/lib ${ENV} \
 	#		./$< --ecdsa handshake TLS_AES_256_GCM_SHA384
+	echo "./$< handshakes       server  TLSv1.3 TLS_AES_256_GCM_SHA384 not-supported"
+	echo "./$< handshakes       client  TLSv1.3 TLS_AES_256_GCM_SHA384 not-supported"
 
 measure-rsa: measure-rsa-aws-lc	\
 	measure-rsa-boringssl	\
